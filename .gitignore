@@ -10,3 +10,4 @@ archive/
 *.bak
 .DS_Store
 .vscode/tasks.json
+backend/
