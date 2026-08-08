@@ -1,0 +1,12 @@
+node_modules/
+.history/
+.kilo/
+.sixth/
+archive/
+*.env
+*.vsix
+*.log
+*.tmp
+*.bak
+.DS_Store
+.vscode/tasks.json
