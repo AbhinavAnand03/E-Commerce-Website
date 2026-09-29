@@ -1,4 +1,5 @@
 #!/bin/bash
+sed -i 's/\r$//' "$0"
 dacpac="false"
 sqlfiles="false"
 SApassword=$1
@@ -6,10 +7,9 @@ dacpath=$2
 sqlpath=$3
 
 echo "SELECT * FROM SYS.DATABASES" | dd of=testsqlconnection.sql
-for i in {1..60};
+for _ in {1..60};
 do
-    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SApassword -d master -i testsqlconnection.sql > /dev/null
-    if [ $? -eq 0 ]
+    if /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$SApassword" -d master -i testsqlconnection.sql > /dev/null
     then
         echo "SQL server ready"
         break
@@ -20,45 +20,33 @@ do
 done
 rm testsqlconnection.sql
 
-for f in $dacpath/*
-do
-    if [ $f == $dacpath/*".dacpac" ]
-    then
-        dacpac="true"
-        echo "Found dacpac $f"
-    fi
+for f in "$dacpath"/*.dacpac; do
+    [ -e "$f" ] || continue
+    dacpac="true"
+    echo "Found dacpac $f"
 done
 
-for f in $sqlpath/*
-do
-    if [ $f == $sqlpath/*".sql" ]
-    then
-        sqlfiles="true"
-        echo "Found SQL file $f"
-    fi
+for f in "$sqlpath"/*.sql; do
+    [ -e "$f" ] || continue
+    sqlfiles="true"
+    echo "Found SQL file $f"
 done
 
-if [ $sqlfiles == "true" ]
+if [ "$sqlfiles" = "true" ]
 then
-    for f in $sqlpath/*
-    do
-        if [ $f == $sqlpath/*".sql" ]
-        then
-            echo "Executing $f"
-            /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SApassword -d master -i $f
-        fi
+    for f in "$sqlpath"/*.sql; do
+        [ -e "$f" ] || continue
+        echo "Executing $f"
+        /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$SApassword" -d master -i "$f"
     done
 fi
 
-if [ $dacpac == "true" ]
+if [ "$dacpac" = "true" ]
 then
-    for f in $dacpath/*
-    do
-        if [ $f == $dacpath/*".dacpac" ]
-        then
-            dbname=$(basename $f ".dacpac")
-            echo "Deploying dacpac $f"
-            /opt/sqlpackage/sqlpackage /Action:Publish /SourceFile:$f /TargetServerName:localhost /TargetDatabaseName:$dbname /TargetUser:sa /TargetPassword:$SApassword
-        fi
+    for f in "$dacpath"/*.dacpac; do
+        [ -e "$f" ] || continue
+        dbname=$(basename "$f" ".dacpac")
+        echo "Deploying dacpac $f"
+        /opt/sqlpackage/sqlpackage /Action:Publish /SourceFile:"$f" /TargetServerName:localhost /TargetDatabaseName:"$dbname" /TargetUser:sa /TargetPassword:"$SApassword"
     done
 fi

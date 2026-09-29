@@ -25,12 +25,13 @@ cd frontend && npm run dev
 
 ## Free frontend deployment
 
-### Vercel
+### GitHub Pages
 
-- Connect your GitHub repository to Vercel
-- Set the project root to `frontend`
-- Build command: `npm run build`
-- Output directory: `dist`
+This repository includes a GitHub Actions workflow to deploy the `frontend/` build to GitHub Pages automatically.
+
+- Push to `main` to trigger deployment
+- Frontend content is served from `frontend/dist`
+- After the workflow completes, enable GitHub Pages for this repo under `Settings > Pages` and select the `gh-pages` branch or the GitHub Pages deployment source shown in the workflow output
 
 ### Netlify
 
