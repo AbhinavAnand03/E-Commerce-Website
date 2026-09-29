@@ -1,0 +1,5 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="luxcartLogoTitle">
+  <title id="luxcartLogoTitle">LuxCart logo</title>
+  <rect width="64" height="64" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+  <path d="M21 42 L21 24 L29 24 C35 24 35 30 29 30 H23 V42 H21 Z M33 24 H45 C49 24 53 27 53 32 C53 37 49 40 45 40 H37 V44 H33 V24 Z" fill="#0F172A"/>
+</svg>

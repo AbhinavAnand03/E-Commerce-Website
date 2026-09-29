@@ -1,0 +1,60 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  top: 67;
+  font: 1em sans-serif;
+  margin: 2rem auto;
+}
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.search-header h1 {
+  color: #333;
+  margin: 0;
+  font-size: 1.5rem;
+}
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+.search-result-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-result-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.search-result-card h2 {
+  color: #333;
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.search-result-card p {
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.search-result-card .price {
+  margin-top: auto;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
