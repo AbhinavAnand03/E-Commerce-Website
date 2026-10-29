@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logoImage from "../assets/luxcart-logo.svg";
 import "./Cart.css";
 
 const Cart = () => {
@@ -49,7 +50,10 @@ const Cart = () => {
         <Link to="/" className="back-link">
           ← Continue Shopping
         </Link>
-        <h1>LuxCart</h1>
+        <Link to="/" className="logo-box">
+          <img src={logoImage} alt="LuxCart logo" className="logo-image" />
+          <span className="logo-text">LuxCart</span>
+        </Link>
       </header>
 
       <div className="cart-container">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logoImage from "../assets/luxcart-logo.svg";
 import "./Payment.css";
 
 const Payment = () => {
@@ -28,7 +29,10 @@ const Payment = () => {
         <Link to="/" className="back-link">
           ← Back to Shop
         </Link>
-        <h1>LuxCart</h1>
+        <Link to="/" className="logo-box">
+          <img src={logoImage} alt="LuxCart logo" className="logo-image" />
+          <span className="logo-text">LuxCart</span>
+        </Link>
       </header>
       <div className="payment-container">
         <h1>Secure Payment</h1>

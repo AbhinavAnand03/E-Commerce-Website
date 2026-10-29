@@ -195,7 +195,7 @@
   font-size: 0.85rem;
 }
 
-.collection-grid {
+collection-grid {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: 1.25fr 1fr 1fr;
@@ -335,7 +335,7 @@
   font-weight: 600;
 }
 
-.wakatime-section {
+wakatime-section {
   margin-top: 1rem;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -397,22 +397,22 @@
   color: #94a3b8;
 }
 
-.newsletter {
+newsletter {
   padding: 1.2rem;
 }
 
-.testimonial p {
+testimonial p {
   margin: 0;
   font-size: 1.04rem;
 }
 
-.testimonial span {
+testimonial span {
   display: block;
   margin-top: 0.55rem;
   color: #94a3b8;
 }
 
-.newsletter {
+newsletter {
   margin-top: 1rem;
   background: #fff;
   border: 1px solid #e2e8f0;
@@ -428,11 +428,11 @@
   border-color: #334155;
 }
 
-.newsletter h2 {
+newsletter h2 {
   margin: 0;
 }
 
-.newsletter p {
+newsletter p {
   margin: 0.35rem 0 0;
   color: #64748b;
 }
@@ -441,12 +441,12 @@
   color: #94a3b8;
 }
 
-.newsletter-form {
+newsletter-form {
   display: flex;
   gap: 0.55rem;
 }
 
-.newsletter-form input {
+newsletter-form input {
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   padding: 0.62rem 0.7rem;
@@ -486,7 +486,7 @@
     display: none;
   }
 
-  .collection-grid {
+  collection-grid {
     grid-template-columns: 1fr;
   }
 
@@ -494,7 +494,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .newsletter {
+  newsletter {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -509,13 +509,69 @@
     grid-template-columns: 1fr;
   }
 
-  .newsletter-form {
+  newsletter-form {
     width: 100%;
     flex-direction: column;
   }
 
-  .newsletter-form input {
+  newsletter-form input {
     min-width: 0;
     width: 100%;
+  }
+}
+/* Style the wrapper container */
+.gender-filters {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Style the individual filter buttons */
+.gender-filters button {
+  background-color: #f3f4f6; /* Light gray */
+  color: #374151; /* Dark text */
+  border: 1px solid #e5e7eb; /* Subtle border */
+  padding: 6px 14px; /* Padding for a pill/button feel */
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.gender-filters button:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+/* Style for the active/selected button */
+.gender-filters button.active {
+  background-color: #2563eb; /* Primary blue */
+  color: #ffffff; /* White text */
+  border-color: #2563eb;
+}
+
+/* Footer */
+.about-footer {
+  border-top: 1px solid var(--mist);
+  padding-block: 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.about-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about *,
+  .about *::before,
+  .about *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }

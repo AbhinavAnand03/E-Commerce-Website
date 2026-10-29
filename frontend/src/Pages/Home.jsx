@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logoImage from "../assets/luxcart-logo.svg";
 import "./Home.css";
 
-function Home() {
+function Home({ onLogout }) {
   const [theme, setTheme] = useState("light");
   const [visibleProducts, setVisibleProducts] = useState(20);
   const [genderFilter, setGenderFilter] = useState("all");
@@ -856,140 +856,145 @@ function Home() {
   }, []);
 
   return (
-    <main className="home-page">
-      <div className="hero-bg one" aria-hidden="true" />
-      <div className="hero-bg two" aria-hidden="true" />
+    <>
+      <main className="home-page">
+        <div className="hero-bg one" aria-hidden="true" />
+        <div className="hero-bg two" aria-hidden="true" />
 
-      <header className="top-nav">
-        <div className="logo-box">
-          <img src={logoImage} alt="LuxCart logo" className="logo-image" />
-          <p className="logo-text">LuxCart</p>
-        </div>
-        <nav>
-          <Link to="/cart">Cart</Link>
-          <Link to="/tracking">Track Order</Link>
-          <a href="#">Collections</a>
-          <a href="#">New Arrivals</a>
-          <a href="#">About</a>
-        </nav>
-        <div className="nav-actions">
-          <button
-            className="outline-btn"
-            onClick={() =>
-              setTheme((prevTheme) =>
-                prevTheme === "light" ? "dark" : "light",
-              )
-            }
-          >
-            {theme === "light" ? "Dark Mode" : "Light Mode"}
-          </button>
-          <Link to="/signin">
-            <button className="outline-btn">Sign In</button>
-          </Link>
-          <Link to="/cart">
-            <button className="outline-btn">Cart (2)</button>
-          </Link>
-        </div>
-      </header>
-
-      <section className="hero reveal">
-        <p className="hero-pill">New Collection 2026</p>
-        <h1>Elevate your lifestyle with timeless essentials</h1>
-        <p>
-          Discover curated products crafted for quality, design, and everyday
-          elegance.
-        </p>
-        <div className="hero-actions">
-          <button className="solid-btn">Shop Collection</button>
-          <button className="outline-btn">Browse Categories</button>
-        </div>
-        <div className="hero-stats">
-          <article>
-            <strong>4.9</strong>
-            <span>Average Rating</span>
-          </article>
-          <article>
-            <strong>48h</strong>
-            <span>Express Delivery</span>
-          </article>
-        </div>
-      </section>
-
-      <section className="collection-card-details ">
-        <article className="collection-card large">
-          <p>Signature Collection</p>
-          <h2>Minimal forms, modern feel</h2>
-        </article>
-        <article className="collection-card">
-          <p>Limited Drop</p>
-          <h3>Urban Noir</h3>
-        </article>
-        <article className="collection-card">
-          <p>New Season</p>
-          <h3>Soft Gold</h3>
-        </article>
-      </section>
-
-      <section className="products reveal">
-        <div className="section-head">
-          <h2>Featured Products</h2>
-          <div
-            className="gender-filters"
-            role="tablist"
-            aria-label="Filter by gender"
-          >
-            <button
-              className={genderFilter === "all" ? "active" : ""}
-              onClick={() => setGenderFilter("all")}
-            >
-              All
-            </button>
-            <button
-              className={genderFilter === "men" ? "active" : ""}
-              onClick={() => setGenderFilter("men")}
-            >
-              Men
-            </button>
-            <button
-              className={genderFilter === "women" ? "active" : ""}
-              onClick={() => setGenderFilter("women")}
-            >
-              Women
-            </button>
+        <header className="top-nav">
+          <div className="logo-box">
+            <img src={logoImage} alt="LuxCart logo" className="logo-image" />
+            <p className="logo-text">LuxCart</p>
           </div>
-          <a href="#">View all</a>
-        </div>
-        <div className="product-grid">
-          {filteredProducts.slice(0, visibleProducts).map((product) => (
-            <article className="product-card" key={product.id}>
-              <div className="image-block">
-                <img src={product.image} alt={product.name} loading="lazy" />
-              </div>
-              <p className="tone">{product.tone}</p>
-              <h3>{product.name}</h3>
-              <p className="price">{product.price}</p>
-              <button className="solid-btn">Add to cart</button>
-            </article>
-          ))}
-        </div>
-        {visibleProducts < filteredProducts.length && (
-          <div className="load-more-container">
+          <nav>
+            <Link to="/cart">Cart</Link>
+            <Link to="/tracking">Track Order</Link>
+            <Link to="/collections">Collections</Link>
+            <Link to="/new-arrivals">New Arrivals</Link>
+            <Link to="/about">About</Link>
+          </nav>
+          <div className="nav-actions">
             <button
-              className="solid-btn load-more-btn"
+              className="outline-btn"
               onClick={() =>
-                setVisibleProducts((prev) =>
-                  Math.min(prev + 20, filteredProducts.length),
+                setTheme((prevTheme) =>
+                  prevTheme === "light" ? "dark" : "light",
                 )
               }
             >
-              Load More Products ({filteredProducts.length - visibleProducts}{" "}
-              remaining)
+              {theme === "light" ? "Dark Mode" : "Light Mode"}
             </button>
+            <button className="outline-btn" onClick={onLogout}>Sign Out</button>
+            <Link to="/cart">
+              <button className="outline-btn">Cart (2)</button>
+            </Link>
           </div>
-        )}
-      </section>
-    </main>
+        </header>
+
+        <section className="hero reveal">
+          <p className="hero-pill">New Collection 2026</p>
+          <h1>Elevate your lifestyle with timeless essentials</h1>
+          <p>
+            Discover curated products crafted for quality, design, and everyday
+            elegance.
+          </p>
+          <div className="hero-actions">
+            <button className="solid-btn">Shop Collection</button>
+            <button className="outline-btn">Browse Categories</button>
+          </div>
+          <div className="hero-stats">
+            <article>
+              <strong>4.9</strong>
+              <span>Average Rating</span>
+            </article>
+            <article>
+              <strong>48h</strong>
+              <span>Express Delivery</span>
+            </article>
+          </div>
+        </section>
+
+        <section className="collection-card-details ">
+          <article className="collection-card large">
+            <p>Signature Collection</p>
+            <h2>Minimal forms, modern feel</h2>
+          </article>
+          <article className="collection-card">
+            <p>Limited Drop</p>
+            <h3>Urban Noir</h3>
+          </article>
+          <article className="collection-card">
+            <p>New Season</p>
+            <h3>Soft Gold</h3>
+          </article>
+        </section>
+
+        <section className="products reveal">
+          <div className="section-head">
+            <h2>Featured Products</h2>
+            <div className="gender-filters" role="tablist">
+              <button
+                className={genderFilter === "all" ? "active" : ""}
+                onClick={() => setGenderFilter("all")}
+              >
+                All
+              </button>
+              <button
+                className={genderFilter === "men" ? "active" : ""}
+                onClick={() => setGenderFilter("men")}
+              >
+                Men
+              </button>
+              <button
+                className={genderFilter === "women" ? "active" : ""}
+                onClick={() => setGenderFilter("women")}
+              >
+                Women
+              </button>
+            </div>
+            <a href="#">View all</a>
+          </div>
+          <div className="product-grid">
+            {filteredProducts.slice(0, visibleProducts).map((product) => (
+              <article className="product-card" key={product.id}>
+                <div className="image-block">
+                  <img src={product.image} alt={product.name} loading="lazy" />
+                </div>
+                <p className="tone">{product.tone}</p>
+                <h3>{product.name}</h3>
+                <p className="price">{product.price}</p>
+                <button className="solid-btn">Add to cart</button>
+              </article>
+            ))}
+          </div>
+          {visibleProducts < filteredProducts.length && (
+            <div className="load-more-container">
+              <button
+                className="solid-btn load-more-btn"
+                onClick={() =>
+                  setVisibleProducts((prev) =>
+                    Math.min(prev + 20, filteredProducts.length),
+                  )
+                }
+              >
+                Load More Products ({filteredProducts.length - visibleProducts}{" "}
+                remaining)
+              </button>
+            </div>
+          )}
+        </section>
+      </main>
+      <footer className="about-footer">
+        <div className="about-wrap about-footer-inner">
+          <span>&copy; 2026 LuxCart. All rights reserved.</span>
+          <span>
+            <Link to="/">Home</Link> &middot;{" "}
+            <Link to="/new-arrivals">New Arrivals</Link> &middot;{" "}
+            <Link to="/tracking">Tracking</Link>
+          </span>
+        </div>
+      </footer>
+    </>
   );
 }
-
 export default Home;

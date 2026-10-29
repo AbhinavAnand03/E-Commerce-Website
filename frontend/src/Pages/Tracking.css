@@ -1,12 +1,13 @@
 .tracking-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+[data-theme="dark"] .tracking-page {
+  color: #e2e8f0;
+}
 .tracking-header {
   display: flex;
   justify-content: space-between;
@@ -17,21 +18,59 @@
 }
 
 .back-link {
-  color: white;
+  color: #0f172a;
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: background 0.3s ease;
 }
 
 .back-link:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+[data-theme="dark"] .back-link {
+  color: #e2e8f0;
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.logo-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-image {
+  width: 2.2rem;
+  height: 2.2rem;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 0.6rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  flex-shrink: 0;
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .logo-text {
+  color: #e2e8f0;
 }
 
 .tracking-header h1 {
-  color: white;
+  color: #0f172a;
   margin: 0;
   font-size: 1.5rem;
 }
